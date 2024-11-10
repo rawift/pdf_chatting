@@ -1,0 +1,7 @@
+{
+    "rewrites": [
+      { "source": "/upload", "destination": "http://65.0.179.187:8000/upload" },
+      { "source": "/other-endpoint", "destination": "http://65.0.179.187:8000/other-endpoint" }
+    ]
+  }
+  
