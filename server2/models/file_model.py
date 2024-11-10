@@ -8,8 +8,8 @@ class FileMetadata(Base):
     __tablename__ = "files"
     
     id = Column(Integer, primary_key=True, index=True)
-    file_name = Column(String(255), nullable=False, index=True)  # Matches VARCHAR(255) in SQL
-    file_url = Column(Text, nullable=False)  # Matches TEXT in SQL
-    mime_type = Column(String(50), nullable=False)  # Matches VARCHAR(50) in SQL
-    size = Column(Integer, nullable=False)  # Matches INTEGER in SQL
-    created_at = Column(DateTime, default=datetime.utcnow)  # Matches TIMESTAMP with default
+    file_name = Column(String(255), nullable=False, index=True)  
+    file_url = Column(Text, nullable=False)  
+    mime_type = Column(String(50), nullable=False)  
+    size = Column(Integer, nullable=False)  
+    created_at = Column(DateTime, default=datetime.utcnow)  

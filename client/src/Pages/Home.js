@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Importing Axios
-import { FiSend, FiUpload } from 'react-icons/fi'; // Importing the left arrow icon and upload icon from react-icons
+import axios from 'axios'; 
+import { FiSend, FiUpload } from 'react-icons/fi'; 
 import { server_api } from '../server_api';
 import Logo from '../assests/logo.svg';
 import Clogo from "../assests/clogo.svg"
@@ -15,7 +15,7 @@ function Home() {
   const [pdfName, setPdfName] = useState('');
   const [file, setfile] = useState(null)
 
-  // Send question to backend and get the answer
+
   const handleSend = async () => {
     if (!input.trim()) return;
 
@@ -30,14 +30,13 @@ function Home() {
       const data = response.data;
       console.log(data)
 
-      // Display answer with typing effect
       displayTypingAnswer(data.answer);
     } catch (error) {
       console.error('Error sending question:', error);
     }
   };
 
-  // Typing effect: display answer one word at a time
+
   const displayTypingAnswer = (answer) => {
     setTypingAnswer('');
     let words = answer.split(' ');
@@ -55,21 +54,21 @@ function Home() {
         ]);
         setTypingAnswer(null);
       }
-    }, 200); // Adjust typing speed by changing the interval
+    }, 200); 
   };
 
-  // Handle PDF file selection
+  
   const handlePdfChange = (event) => {
     const file = event.target.files[0];
     if (file && file.type === 'application/pdf') {
       setPdfFile(file);
-      setPdfName(file.name); // Display the name of the selected PDF
+      setPdfName(file.name); 
     } else {
       alert('Please select a PDF file');
     }
   };
 
-  // Handle PDF upload (send to backend)
+  
   const handlePdfUpload = async () => {
     if (pdfFile) {
       const formData = new FormData();
@@ -84,11 +83,11 @@ function Home() {
 
         if (response.status === 200) {
           const data = response.data;
-          // You can now display the name of the PDF as a message
+     
           console.log(data)
           setfile(data)
           alert(`${data.file_name} has beed uploaded`)
-          //setMessages([...messages, { type: 'info', text: `Uploaded PDF: ${data.file_name}` }]);
+         
         }
       } catch (error) {
         console.error('Error uploading PDF:', error);
@@ -114,7 +113,10 @@ function Home() {
         onChange={handlePdfChange}
         className="hidden"
       />
-      {pdfFile && <span className="text-sm text-gray-700">{pdfName}</span>}
+      {pdfFile && <a href={file?.file_url} target="_blank" rel="noopener noreferrer">
+  <span className="text-sm text-gray-700">{pdfName}</span>
+</a>
+}
       {pdfFile && (
         <button
           onClick={handlePdfUpload}

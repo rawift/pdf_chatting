@@ -4,8 +4,8 @@ from datetime import datetime
 class FileResponse(BaseModel):
     file_name: str
     file_url: str
-    size: int  # Assuming size is an integer representing file size in bytes
-    mime_type: str  # MIME type of the file
+    size: int 
+    mime_type: str 
   
 
     class Config:
