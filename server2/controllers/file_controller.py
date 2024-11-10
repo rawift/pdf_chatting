@@ -23,7 +23,7 @@ def upload_file_to_db(file, db: Session):
     file.file.seek(0)  
     
 
-    s3_url = upload_to_s3(file, "aissigmentss")
+    s3_url = upload_to_s3(file, "aissigments")
     
     
     file_name = file.filename

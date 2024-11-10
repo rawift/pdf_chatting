@@ -1,1 +1,1 @@
-export const server_api="http://localhost:8000"
+export const server_api="http://65.0.179.187:8000"

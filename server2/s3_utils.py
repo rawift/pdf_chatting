@@ -2,7 +2,6 @@ import boto3
 from fastapi import HTTPException
 from server2.config import AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_REGION
 
-
 # S3 client setup
 s3_client = boto3.client(
     's3', 
@@ -13,7 +12,15 @@ s3_client = boto3.client(
 
 def upload_to_s3(file, bucket_name: str):
     try:
-        s3_client.upload_fileobj(file.file, bucket_name, file.filename)
+        # Add ContentDisposition inline in ExtraArgs
+        s3_client.upload_fileobj(
+            file.file,
+            bucket_name,
+            file.filename,
+            ExtraArgs={'ContentDisposition': 'inline'}
+        )
+        
+        # Construct and return the S3 URL
         s3_url = f'https://{bucket_name}.s3.{AWS_REGION}.amazonaws.com/{file.filename}'
         return s3_url
     except Exception as e:
